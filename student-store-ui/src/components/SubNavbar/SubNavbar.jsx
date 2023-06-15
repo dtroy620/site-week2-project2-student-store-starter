@@ -11,11 +11,11 @@ export default function SubNavbar({isSelected = false, handleSelected, value, ha
                     <input value={value} className="search-input" type="text" name="search-input" placeholder="Search" onChange={handleChange}/>
                 </div>
                 <div className="categories">
-                    <button className={selectedCategory} onClick={handleFilter}>All Categories</button>
+                    <button className={selectedCategory} onClick={handleFilter}>All Categories </button>
                     <button className={selectedCategory} onClick={handleFilter}>Clothing</button>
-                    <button className={selectedCategory} onClick={handleSelected}>Food</button>
-                    <button className={selectedCategory} onClick={handleSelected}>Accessories</button>
-                    <button className={selectedCategory} onClick={handleSelected}>Tech</button>
+                    <button className={selectedCategory} onClick={handleFilter}>Food</button>
+                    <button className={selectedCategory} onClick={handleFilter}>Accessories</button>
+                    <button className={selectedCategory} onClick={handleFilter}>Tech</button>
                 </div>
             </div>
             

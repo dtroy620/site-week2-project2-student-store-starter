@@ -13,7 +13,7 @@ export default function ProjectCard({product, productId, quantity, handleAddItem
     return(
         <div className="product-card">
             <div className="media">
-                <Link to={"products/"+product.id}><img src={product.image}/></Link>
+                <Link to={"products/"+product.id}><img src={product.image} alt={`Picture of ${product.name}`}/></Link>
             </div>
             <div className="product-info">
             <div className="card-content">

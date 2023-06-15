@@ -1,23 +1,19 @@
 import * as React from "react"
 import "./ProductDetails.css"
-import { useParams, useState, useEffect } from "react"
-import axios from "axios"
+import { useState, useEffect } from "react"
+import { useParams} from "react-router-dom"
+import ProductView from "../ProductView/ProductView"
 
-export default function ProductDetail({handleAddItemToCart, handleRemoveItemToCart}){
-    const { id } = useParams()
-    const [product, setProduct] = useState({})
-    const url=`https://codepath-store-api.herokuapp.com/store/${id}`
-  useEffect(() => {
-    axios.get(url).then((response ) => {
-       setProduct(response.data.products)
-    })
-    .catch((error) => {
-      setError(error);
-    })
-  }, [])
+export default function ProductDetail({products, handleAddItemToCart, handleRemoveItemToCart}){
+    const {productId} = useParams()
+    const [filtered, setFiltered] = useState([])
+
+    useEffect(() => {
+        setFiltered(products?.filter(products => products.id == productId))}, [])
+    
     return (
     <div className="product-detail">
-        Show Link {product.description}
+        {filtered?.map(element => <ProductView product={filtered[1]}/>)}
     </div>
     )
 } 

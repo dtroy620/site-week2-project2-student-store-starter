@@ -1,6 +1,6 @@
 import * as React from "react"
 import axios from 'axios'
-import {useEffect, useState, useParams} from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
@@ -51,13 +51,15 @@ export default function App() {
     }
     ))
   }
-  
-  function handleFilter(category) {
-    setSelectedCategory(category)
-    setFilter(() => {
-      products.filter(item => item.category === selectedCategory || selectedCategory === "all")
-    })
-    console.log(filter);
+  console.log("BEFORE BEFORE FILTER: ", filter)
+  function handleFilter(e) {
+    console.log("BEFORE FILTER: ", filter)
+    setSelectedCategory(e.target.value)
+    setFilter(products?.filter(item => {item.category === selectedCategory}
+      ))
+      
+    
+    console.log("AFTER FILTER: ", filter)
   }
 
   function handleSubmit(e) {
@@ -72,25 +74,24 @@ export default function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        <Routes>
-          <Route path="products/:id" component={<ProductDetails/>}/>
-          <Route path="/about" component={<About/>}/>
-        </Routes>
         <main>
-          <Navbar />
+          <Navbar/>
           <Sidebar
             handleOnToggle={handleOnToggle}
-            isOpen={isOpen}
-          />
-          
-          <Home isSelected={isSelected} 
-                handleSelected={handleSelected} 
-                value={value} 
-                products={search ? search : products} 
-                handleAddItemToCart={handleAddItemToCart} 
-                handleSubmit={handleSubmit} 
-                handleChange={handleChange}
-                handleFilter={handleFilter}/>
+            isOpen={isOpen}/>
+          <Routes>
+            <Route path="/" element={<Home
+                                        isSelected={isSelected} 
+                                        handleSelected={handleSelected} 
+                                        value={value} 
+                                        products={search ? search : products} 
+                                        handleAddItemToCart={handleAddItemToCart} 
+                                        handleSubmit={handleSubmit} 
+                                        handleChange={handleChange}
+                                        handleFilter={handleFilter}/>}/>
+            <Route path="/products/:productId" element={<ProductDetails products={products}/>}/>
+            <Route path="/About" element={<About/>}/>
+          </Routes>
         </main>
       </BrowserRouter>
     </div>
