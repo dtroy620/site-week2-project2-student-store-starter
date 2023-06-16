@@ -10,20 +10,6 @@ import "./App.css"
 import About from "../About/About"
 
 export default function App() {
-  const [products, setProducts] = useState();
-  const [items, setItems] = useState({item: '', quantity: 0})
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
-  const [error, setError] = useState();
-  const [isFetching, setIsFetching] = useState(false);
-  const [shoppingCart, setShoppignCart] = useState();
-  const [checkOutForm, setCheckOutForm] = useState();
-  const [selectedCategory, setSelectedCategory] = useState();
-  const [search, setSearch] = useState()
-  const [value, setValue] = useState('')
-  const [filter, setFilter] = useState()
-  
-
   const url='https://codepath-store-api.herokuapp.com/store'
   useEffect(() => {
     axios.get(url).then((response ) => {
@@ -34,36 +20,56 @@ export default function App() {
       setError(error);
     })
   }, [])
+  
+  const [products, setProducts] = useState();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const [value, setValue] = useState('')
+  const [filter, setFilter] = useState()
+  const [quantity, setQuantity] = useState(0)
+  const [showDescription, setShowDescription] = useState(false)
+
+  const [items, setItems] = useState({item: '', quant: 0})
+  const [error, setError] = useState();
+  const [isFetching, setIsFetching] = useState(false);
+  const [shoppingCart, setShoppignCart] = useState();
+  const [checkOutForm, setCheckOutForm] = useState();
+
+  
 
   function handleOnToggle(){
     setIsOpen(!isOpen);
   }
 
-  function handleAddItemToCart() {
-    
+  function handleAddItemToCart(id) {
+    products?.filter(product => {
+      if (product.id === id) setItems(product, quant+1)
+      console.log(items)
+    })
+    setQuantity((quant) => quant+1)
   }
-  
+  function handleRemoveItemToCart() {
+    setQuantity((quant) => quant-1)
+  }
+
   function handleChange (e) {
     setValue(e.target.value)
-    setSearch(products?.filter( products => {
+    setFilter(products?.filter( products => {
         if (e.target.value  === '' ) return products;
-        return products.name.toLowerCase().includes(e.target.value.toLowerCase());
+         return products.name.toLowerCase().includes(e.target.value.toLowerCase());
     }
     ))
   }
-  console.log("BEFORE BEFORE FILTER: ", filter)
-  function handleFilter(e) {
-    console.log("BEFORE FILTER: ", filter)
-    setSelectedCategory(e.target.value)
-    setFilter(products?.filter(item => {item.category === selectedCategory}
+
+  function handleFilter(c) {
+    setFilter(products?.filter(item => {
+      if (c === "") return item
+      return item.category === c}
       ))
-      
-    
-    console.log("AFTER FILTER: ", filter)
   }
 
   function handleSubmit(e) {
-    e.preventDefeault();
+    e.preventDefault();
 
   }
 
@@ -84,13 +90,16 @@ export default function App() {
                                         isSelected={isSelected} 
                                         handleSelected={handleSelected} 
                                         value={value} 
-                                        products={search ? search : products} 
-                                        handleAddItemToCart={handleAddItemToCart} 
+                                        products={filter ? filter : products}
+                                        quantity={quantity} 
+                                        handleAddItemToCart={handleAddItemToCart}
+                                        handleRemoveItemToCart={handleRemoveItemToCart} 
                                         handleSubmit={handleSubmit} 
                                         handleChange={handleChange}
-                                        handleFilter={handleFilter}/>}/>
+                                        handleFilter={handleFilter}
+                                        showDescription={showDescription}/>}/>
             <Route path="/products/:productId" element={<ProductDetails products={products}/>}/>
-            <Route path="/About" element={<About/>}/>
+            <Route path="/#about" element={<About/>}/>
           </Routes>
         </main>
       </BrowserRouter>

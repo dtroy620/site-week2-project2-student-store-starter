@@ -3,13 +3,7 @@ import { useState } from "react"
 import "./ProductCard.css"
 
 export default function ProjectCard({product, productId, quantity, handleAddItemToCart, handleRemoveItemToCart, showDescription = false}) {
-    const [quant, setQuant] = useState(0)
-    function incrementBy1(){
-        
-        setQuant((quant) => quant+1)
-        console.log(quant)
-    }
-    
+    const description = showDescription ? "show-description" : "hide-description"
     return(
         <div className="product-card">
             <div className="media">
@@ -18,16 +12,16 @@ export default function ProjectCard({product, productId, quantity, handleAddItem
             <div className="product-info">
             <div className="card-content">
                 <p className="product-name">{product.name}</p>
-                <p className="product-price">${product.price}</p>
-                
+                <p className="product-price">${(Math.round(product.price*100) / 100).toFixed(2)}</p>
+                <p className={description}>{product.description}</p>
             </div>
             <div className="actions">
                 <div className="card-buttons">
-                    <button className="add" onClick={incrementBy1}>+</button>
+                    <button className="add" onClick={() => handleAddItemToCart(productId)}>+</button>
                     <button className="remove" onClick={handleRemoveItemToCart}>-</button>
                 </div>
                 <span className="quantity-display">
-                    <span className="quantity-box">L</span>
+                    <span className="quantity-box">{quantity}</span>
                 </span>
             </div>
             </div>

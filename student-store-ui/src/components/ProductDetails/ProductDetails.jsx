@@ -10,10 +10,13 @@ export default function ProductDetail({products, handleAddItemToCart, handleRemo
 
     useEffect(() => {
         setFiltered(products?.filter(products => products.id == productId))}, [])
-    
+    console.log(filtered[0])
     return (
     <div className="product-detail">
-        {filtered?.map(element => <ProductView product={filtered[1]}/>)}
+        {filtered?.map((element, id) => <ProductView  handleAddItemToCart={handleAddItemToCart} 
+                                                      handleRemoveItemToCart={handleRemoveItemToCart} 
+                                                      key={id} 
+                                                      product={filtered[0]}/>)}
     </div>
     )
 } 

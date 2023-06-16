@@ -4,8 +4,8 @@ import Hero from "../Hero/Hero"
 import ProductGrid from "../ProductGrid/ProductGrid"
 import SubNavbar from "../SubNavbar/SubNavbar"
 import About from "../About/About"
-
-export default function Home({isSelected=false, handleSelected, value, products, handleAddItemToCart, handleRemoveItemToCart, handleChange, handleFilter}) {
+import {Link} from "react-router-dom"
+export default function Home({isSelected=false, handleSelected, value, products, handleAddItemToCart, handleRemoveItemToCart, handleChange, handleFilter, quantity, showDescription}) {
   return (
     <>
     <Hero/>
@@ -15,11 +15,14 @@ export default function Home({isSelected=false, handleSelected, value, products,
                products={products} 
                handleFilter={handleFilter}/>
     <div className="home">
-      <ProductGrid products={products} 
+      <ProductGrid products={products}
+                   quantity={quantity}
                    handleAddItemToCart={handleAddItemToCart} 
-                   handleRemoveItemToCart={handleRemoveItemToCart}/>
+                   handleRemoveItemToCart={handleRemoveItemToCart}
+                   showDescription={showDescription}/>
     </div>
-      <About/>
+        <About/>
+  
     </>
    
   )

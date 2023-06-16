@@ -1,13 +1,11 @@
 import "./ProductView.css"
-
-export default function ProductView (product) {
+import ProductCard from "../ProductCard/ProductCard"
+export default function ProductView ({product, handleAddItemToCart, handleRemoveItemToCart}) {
 
     return (
         <div className="product-view">
-            <div className="media">
-                <img src={product.image} alt={`Picture of ${product.name}`}/>
-            </div>
-            <p>{product.description}</p>
+            <h1>Product #{product.id}</h1>
+            <ProductCard product={product} productId={product.id} handleAddItemToCart={handleAddItemToCart} handleRemoveItemToCart={handleRemoveItemToCart}/>
         </div>
     )
 }

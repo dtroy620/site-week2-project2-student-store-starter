@@ -1,3 +1,33 @@
-.product-view {
+.product-view{
     margin: 0 auto;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
 }
+.product-view .media {
+    padding: 18px 20px;
+}
+.product-view .media img{
+    width: 550px;
+    height: 550px;
+}
+.product-view .product-card {
+    height: 850px;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #e4e4e4;
+}
+.product-view .card-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+.product-view .card-buttons {
+    font-size: 50px;
+}
+
