@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { useParams} from "react-router-dom"
 import ProductView from "../ProductView/ProductView"
 
-export default function ProductDetail({products, handleAddItemToCart, handleRemoveItemToCart}){
+export default function ProductDetail({products, handleAddItemToCart, handleRemoveItemToCart, showDescription, setShowDescription}){
     const {productId} = useParams()
     const [filtered, setFiltered] = useState([])
 
@@ -16,7 +16,9 @@ export default function ProductDetail({products, handleAddItemToCart, handleRemo
         {filtered?.map((element, id) => <ProductView  handleAddItemToCart={handleAddItemToCart} 
                                                       handleRemoveItemToCart={handleRemoveItemToCart} 
                                                       key={id} 
-                                                      product={filtered[0]}/>)}
+                                                      product={filtered[0]}
+                                                      showDescription={showDescription}
+                                                      setShowDescription={setShowDescription}/>)}
     </div>
     )
 } 

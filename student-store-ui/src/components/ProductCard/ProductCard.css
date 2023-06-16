@@ -4,6 +4,8 @@
     display: flex;
     flex-direction: column;
     border: solid 1px #e4e4e4;
+    background-color: #CFE1B9;
+    border-radius: 5%;
 }
 
 .product-card .product-info {
@@ -17,7 +19,9 @@
 }
 
 .product-card .media {
+    display: flex;
     border-bottom: 1px solid;
+    justify-content: center;
 }
 
 .product-card .product-info{

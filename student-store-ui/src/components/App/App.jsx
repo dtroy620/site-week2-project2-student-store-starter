@@ -63,8 +63,9 @@ export default function App() {
 
   function handleFilter(c) {
     setFilter(products?.filter(item => {
-      if (c === "") return item
+      if (c === "") return item;
       return item.category === c}
+    
       ))
   }
 
@@ -81,7 +82,7 @@ export default function App() {
     <div className="app">
       <BrowserRouter>
         <main>
-          <Navbar/>
+          <Navbar setShowDescription={setShowDescription}/>
           <Sidebar
             handleOnToggle={handleOnToggle}
             isOpen={isOpen}/>
@@ -98,7 +99,7 @@ export default function App() {
                                         handleChange={handleChange}
                                         handleFilter={handleFilter}
                                         showDescription={showDescription}/>}/>
-            <Route path="/products/:productId" element={<ProductDetails products={products}/>}/>
+            <Route path="/products/:productId" element={<ProductDetails products={products}                                                  setShowDescription={setShowDescription}                                        showDescription={showDescription}/>}/>
             <Route path="/#about" element={<About/>}/>
           </Routes>
         </main>

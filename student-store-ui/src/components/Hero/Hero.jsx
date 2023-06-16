@@ -12,7 +12,7 @@ export default function Hero(){
                     </p>
                     </div>
                     <div className="media">
-                        <img className="hero-img" src="https://codepath-student-store-demo.surge.sh/assets/student_store_icon.18e5d61a.svg"/>
+                        <img className="hero-img" src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/76622/four-leaf-clover-clipart-xl.png"/>
                     </div>
             </div>
             
