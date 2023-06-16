@@ -13,11 +13,6 @@
     justify-content: center;
 }
 
-.about .media {
-    padding: 10px;
-    align-items: center;
-    justify-content: center;
-}
 .about .box {
     background-color: #CFE1B9;
     display: flex;

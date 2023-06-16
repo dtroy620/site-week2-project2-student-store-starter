@@ -1,6 +1,7 @@
 .contact{
     display: flex;
     gap: 20px;
+    overflow: visible
 }
 .contact .box{
     background-color: #CFE1B9;
@@ -9,6 +10,8 @@
     border: 1px solid lightgray;
     width: 1100px;
     padding: 10px;
+    overflow: visible;
+    max-height: 265px;
 }
 
 .contact .content {
@@ -21,9 +24,24 @@
     justify-content: center;
     
 }
+.contact .media {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    margin-left: 400px;
+    z-index: 10;
+}
 
+.contact .media img {
+   margin-bottom: 95px;
+   height: 300px;
+}
 .contact .text {
     align-items: right;
     justify-content: right;
 
+}
+
+.contact .media img {
+    background: transparent
 }

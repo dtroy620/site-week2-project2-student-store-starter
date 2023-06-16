@@ -6,7 +6,7 @@ export default function About() {
     return (
         <div id="about" className="about">
             <div className="content">
-                <h2>About</h2>
+                <h1>About</h1>
                 <div className="box">
                     <div className="paragraph">
                         <p>
@@ -18,9 +18,6 @@ export default function About() {
                         <p>
                             All proceeds go towards bringing high quality CS education to college students around the country.
                         </p>
-                    </div>
-                    <div className="media">
-                        <img src="https://codepath-student-store-demo.surge.sh/assets/giant_codepath.6952ef57.svg"/>
                     </div>
                 </div>
                 

@@ -43,6 +43,11 @@
     font-size: 25px;
 }
 
+.category-button:hover{
+    border: 5px solid #97A97C;
+    border-radius: 7%;
+}
+
 .category-button-selected {
     background: none;
     border: none;

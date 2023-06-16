@@ -22,3 +22,4 @@ export default function SubNavbar({isSelected = false, handleSelected, value, ha
         </nav>
     )
 }
+

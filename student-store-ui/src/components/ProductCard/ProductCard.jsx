@@ -2,8 +2,17 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./ProductCard.css"
 
-export default function ProjectCard({product, productId, quantity, handleAddItemToCart, handleRemoveItemToCart, showDescription = false}) {
+export default function ProjectCard({product, productId, handleAddItemToCart, handleRemoveItemToCart, showDescription = false}) {
     const description = showDescription ? "show-description" : "hide-description"
+    const [quantity, setQuantity] = useState(0)
+    function changeQuantity(e){
+        if (e === "add") setQuantity(quantity+1)
+        else if (e === "remove") 
+        {
+            if (quantity === 0) setQuantity(0)
+            else setQuantity(quantity-1)
+        }
+    }
     return(
         <div className="product-card">
             <div className="media">
@@ -17,8 +26,8 @@ export default function ProjectCard({product, productId, quantity, handleAddItem
             </div>
             <div className="actions">
                 <div className="card-buttons">
-                    <button className="add" onClick={() => handleAddItemToCart(productId)}>+</button>
-                    <button className="remove" onClick={handleRemoveItemToCart}>-</button>
+                    <button className="add" onClick={() => changeQuantity('add')}>+</button>
+                    <button className="remove" onClick={() => changeQuantity('remove')}>-</button>
                 </div>
                 <span className="quantity-display">
                     <span className="quantity-box">{quantity}</span>

@@ -5,6 +5,8 @@ import ProductGrid from "../ProductGrid/ProductGrid"
 import SubNavbar from "../SubNavbar/SubNavbar"
 import About from "../About/About"
 import Contact from "../Contact/Contact"
+
+
 export default function Home({isSelected=false, handleSelected, value, products, handleAddItemToCart, handleRemoveItemToCart, handleChange, handleFilter, quantity, showDescription=false}) {
   return (
     <>
