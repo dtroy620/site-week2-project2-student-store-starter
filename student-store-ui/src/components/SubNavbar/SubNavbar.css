@@ -17,7 +17,7 @@
 
 .search {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
     flex: 1;
     margin: 20px 0;
