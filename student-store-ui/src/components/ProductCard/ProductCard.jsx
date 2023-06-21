@@ -40,10 +40,14 @@ export default function ProjectCard({
         </div>
         <div className="actions">
           <div className="card-buttons">
-            <button className="add" onClick={() => changeQuantity("add")}>
+            <button className="add" onClick={() => {
+              changeQuantity("add") 
+              handleAddItemToCart(product.id, quantity)}}>
               +
             </button>
-            <button className="remove" onClick={() => changeQuantity("remove")}>
+            <button className="remove" onClick={() => {
+              changeQuantity("remove") 
+              handleAddItemToCart(product.id, quantity)}}>
               -
             </button>
           </div>

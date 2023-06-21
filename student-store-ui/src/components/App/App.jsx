@@ -24,96 +24,57 @@ export default function App() {
       });
   }, []);
 
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState(); //Required
   const [isOpen, setIsOpen] = useState(false); //Required
-  const [isSelected, setIsSelected] = useState(false);
-  const [value, setValue] = useState("");
-  const [filter, setFilter] = useState();
-  const [category, setCategory] = useState();
-  const [quantity, setQuantity] = useState(0);
+  const [error, setError] = useState(); //Required
+  const [isFetching, setIsFetching] = useState(false); //Required
+  const [shoppingCart, setShoppingCart] = useState([]); //Required
+  const [checkOutForm, setCheckOutForm] = useState(); //Required
+
   const [showDescription, setShowDescription] = useState(false);
 
-  const [items, setItems] = useState({ item: "", quant: 0 });
-  const [error, setError] = useState();
 
-  const [isFetching, setIsFetching] = useState(false);
-  const [shoppingCart, setShoppignCart] = useState();
-  const [checkOutForm, setCheckOutForm] = useState();
-
-  function handleOnToggle() {
+  function handleOnToggle() { //Required
     setIsOpen(!isOpen);
   }
 
-  function handleAddItemToCart(id) {
-    products?.filter((product) => {
-      if (product.id === id) setItems(product, quant + 1);
-      console.log(items);
-    });
-    setQuantity((quant) => quant + 1);
-  }
-  function handleRemoveItemToCart() {
-    setQuantity((quant) => quant - 1);
+  function handleAddItemToCart(id, quant) { //Required
+    setShoppingCart([...shoppingCart, { //implement if ID exists, increase quantity and not add new object
+      id:id,
+      quantity:quant
+    }])
   }
 
-  function handleChange(e) {
-    setValue(e.target.value);
+  console.log(shoppingCart);
 
-    category
-      ? setFilter(
-          products
-            ?.filter((product) => product.category === category)
-            .filter((product) =>
-              product.name.toLowerCase().includes(value.toLowerCase())
-            )
-        )
-      : setFilter(
-          products?.filter((products) => {
-            if (value === "") return products;
-            return products.name.toLowerCase().includes(value.toLowerCase());
-          })
-        );
-  }
-
-  function handleFilter(c) {
-    setCategory(c);
-    setFilter(
-      products?.filter((item) => {
-        if (c === "") return item;
-        return item.category === c;
-      })
-    );
+  function handleRemoveItemToCart() { //Required
   }
 
   function handleSubmit(e) {
     e.preventDefault();
   }
 
-  function handleSelected() {
-    setIsSelected(!isSelected);
-    console.log(isSelected);
-  }
+  
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Navbar setShowDescription={setShowDescription} />
-          <Sidebar handleOnToggle={handleOnToggle} isOpen={isOpen} />
+          <Sidebar 
+            handleOnToggle={handleOnToggle} 
+            isOpen={isOpen}
+            products={products}
+            shoppingCart={shoppingCart} />
           <Routes>
             <Route
               path="/"
               element={
                 <Home
-                  isSelected={isSelected}
-                  handleSelected={handleSelected}
-                  value={value}
-                  products={filter ? filter : products}
-                  quantity={quantity}
+                  products={products}
                   handleAddItemToCart={handleAddItemToCart}
                   handleRemoveItemToCart={handleRemoveItemToCart}
                   handleSubmit={handleSubmit}
-                  handleChange={handleChange}
-                  handleFilter={handleFilter}
                   showDescription={showDescription}
                 />
               }

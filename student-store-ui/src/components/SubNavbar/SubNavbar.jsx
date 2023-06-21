@@ -3,16 +3,11 @@ import ProductGrid from "../ProductGrid/ProductGrid";
 import { useState } from "react";
 
 export default function SubNavbar({
-  isSelected = false,
-  handleSelected,
   value,
   handleChange,
-  products,
   handleFilter,
-}) {
-  const selectedCategory = isSelected
-    ? "category-button-selected"
-    : "category-button";
+}) 
+{
   return (
     <nav className="sub-navbar">
       <div className="content">
@@ -27,29 +22,29 @@ export default function SubNavbar({
           />
         </div>
         <div className="categories">
-          <button className={selectedCategory} onClick={() => handleFilter("")}>
+          <button className="category-button" onClick={() => handleFilter("")}>
             All Categories{" "}
           </button>
           <button
-            className={selectedCategory}
+            className="category-button"
             onClick={() => handleFilter("clothing")}
           >
             Clothing
           </button>
           <button
-            className={selectedCategory}
+            className="category-button"
             onClick={() => handleFilter("food")}
           >
             Food
           </button>
           <button
-            className={selectedCategory}
+            className="category-button"
             onClick={() => handleFilter("accessories")}
           >
             Accessories
           </button>
           <button
-            className={selectedCategory}
+            className="category-button"
             onClick={() => handleFilter("tech")}
           >
             Tech

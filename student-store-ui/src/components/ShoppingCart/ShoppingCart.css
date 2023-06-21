@@ -1,0 +1,14 @@
+.cart-headers{
+    display: flex;
+    color: white;
+    width: 75%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.cart-row{
+    display: flex;
+    color: white;
+    width: 75%;
+    justify-content: space-between;
+    margin: 0 auto;
+}

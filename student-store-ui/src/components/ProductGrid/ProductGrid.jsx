@@ -3,7 +3,6 @@ import ProductCard from "../ProductCard/ProductCard";
 
 export default function ProductGrid({
   products,
-  quantity,
   handleAddItemToCart,
   handleRemoveItemToCart,
   showDescription,
@@ -18,7 +17,6 @@ export default function ProductGrid({
               key={id}
               product={product}
               productId={id}
-              quantity={quantity}
               handleAddItemToCart={handleAddItemToCart}
               handleRemoveItemToCart={handleRemoveItemToCart}
               showDescription={showDescription}
