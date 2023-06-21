@@ -9,8 +9,10 @@ export default function ProjectCard({
   handleRemoveItemToCart,
   showDescription = false,
 }) {
+  
   const description = showDescription ? "show-description" : "hide-description";
   const [quantity, setQuantity] = useState(0);
+  
   function changeQuantity(e) {
     if (e === "add") setQuantity(quantity + 1);
     else if (e === "remove") {

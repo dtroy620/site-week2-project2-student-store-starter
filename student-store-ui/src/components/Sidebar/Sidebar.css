@@ -48,11 +48,9 @@
 }
 .material-icons.md-48 {
     font-size: 40px;
+    color: white;
 }
-.shopping-cart {
-    width: 100%;
-    color: black;
-}
+
 .sidebar .wrapper{
     display: flex;
     flex-direction: column;
@@ -66,4 +64,25 @@
     margin-top: 50px;
     width: 100%;
     padding-left: 0.5rem;
+}
+
+.info.show{
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+}
+.info.close{
+    display: none;
+}
+
+.cart-icons.close{
+    display: none;
+}
+.cart-icons.show{
+    width: 100%;
+}
+
+.cart-headers{
+    color: white;
+    justify-content: space-around;
 }

@@ -41,7 +41,12 @@
     align-items: flex-start;
     justify-content: flex-end;
 }
-
+.product-card .card-buttons button {
+    background-color:#97A97C;
+    color: black;
+    border-radius: 7%;
+    font-size: 17px;
+}
 .product-card .quantity-display {
     width: 80px;
     display: flex;
