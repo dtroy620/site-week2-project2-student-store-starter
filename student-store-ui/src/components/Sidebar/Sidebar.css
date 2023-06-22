@@ -27,6 +27,7 @@
     background-color: #718355;
     height: 100%;
     position: fixed;
+    
 }
 .sidebar .toggle-button {
     margin-top: 20px;
@@ -117,4 +118,11 @@
     width: 100%;
     flex-direction: column;
     justify-content: center;
+}
+
+.checkout-button button {
+    background-color: #87986A;
+    color: white;
+    margin-left: 35px;
+    font-size: 30px;
 }

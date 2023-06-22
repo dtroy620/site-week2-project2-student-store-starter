@@ -1,18 +1,6 @@
 import "./ShoppingCart.css";
 
-export default function ShoppingCart({ isOpen, products, shoppingCart }) {
-  let tax = 0.0875;
-  let subtotal = 0;
-  let total = 0;
-
-  shoppingCart?.map(
-    (item) =>
-      (subtotal +=
-        products.filter((product) => item.itemId === product.id)[0].price *
-        item.quantity)
-  );
-
-  total = tax + subtotal;
+export default function ShoppingCart({products, shoppingCart, tax, subtotal, total }) {
 
   if (shoppingCart.length === 0) {
     return (
