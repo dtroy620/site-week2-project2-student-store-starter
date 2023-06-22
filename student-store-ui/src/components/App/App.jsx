@@ -55,28 +55,25 @@ export default function App() {
     }
   }
 
-  //Required FIX THIS FUNCTION
+  // Required
   function handleRemoveItemToCart(productId) {
     let isAlreadyInCart = shoppingCart.some(
       (product) => product.itemId === productId
     );
     let i = shoppingCart.findIndex((product) => product.itemId === productId);
     if (isAlreadyInCart) {
-      
       let updatedCart = [...shoppingCart];
       updatedCart[i] = {
         itemId: updatedCart[i].itemId,
         quantity: --updatedCart[i].quantity,
-      }
+      };
       setShoppingCart(updatedCart);
-      if (updatedCart[i].quantity === 0)
-      {
-        updatedCart = shoppingCart.filter((item) => item.itemId !== productId )
-        setShoppingCart(updatedCart)
+      if (updatedCart[i].quantity === 0) {
+        updatedCart = shoppingCart.filter((item) => item.itemId !== productId);
+        setShoppingCart(updatedCart);
       }
     }
   }
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -108,10 +105,12 @@ export default function App() {
               }
             />
             <Route
-              path="/products/:productId"
+              path="products/:productId"
               element={
                 <ProductDetails
-                  products={products}
+                  shoppingCart={shoppingCart}
+                  handleAddItemToCart={handleAddItemToCart}
+                  handleRemoveItemToCart={handleRemoveItemToCart}
                   setShowDescription={setShowDescription}
                   showDescription={showDescription}
                 />

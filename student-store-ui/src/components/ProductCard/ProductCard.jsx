@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
 
-export default function ProjectCard({
+export default function ProductCard({
   product,
   shoppingCart,
   productId,
@@ -9,6 +9,7 @@ export default function ProjectCard({
   handleRemoveItemToCart,
   showDescription = false,
 }) {
+
   const description = showDescription ? "show-description" : "hide-description";
   return (
     <div className="product-card">
@@ -21,7 +22,7 @@ export default function ProjectCard({
         <div className="card-content">
           <p className="product-name">{product.name}</p>
           <p className="product-price">
-            {product.price.toLocaleString("us-EN", {
+            {product.price?.toLocaleString("us-EN", {
               style: "currency",
               currency: "USD",
             })}

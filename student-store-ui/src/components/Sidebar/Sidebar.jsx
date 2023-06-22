@@ -12,11 +12,18 @@ export default function Sidebar({
   const sideBarClassName = isOpen ? "sidebar open" : "sidebar closed";
   const showInfo = isOpen ? "info show" : "info close";
   const showIcons = isOpen ? "cart-icons close" : "cart-icons show";
-  const [value, setValue] = useState();
+  const [nameInput, setNameInput] = useState()
+  const [emailInput, setEmailInput] = useState()
 
-  function handleInput(e) {
-    setValue(e.target.value);
-    console.log(value);
+  function handleInput(e, i) {
+    if (i === "name")
+    {
+      setNameInput(e.target.value)
+    }
+    else if (i === "email")
+    {
+      setEmailInput(e.target.value)
+    }
   }
 
   return (
@@ -35,11 +42,13 @@ export default function Sidebar({
           </div>
           <div className={showInfo}>
             <h2 className="shopping-cart-header">Shopping Cart</h2>
-            <ShoppingCart
-              isOpen={isOpen}
-              products={products}
-              shoppingCart={shoppingCart}
-            />
+            <div className="cart-table">
+              <ShoppingCart
+                isOpen={isOpen}
+                products={products}
+                shoppingCart={shoppingCart}
+              />
+            </div>
 
             <div className="payment-form">
               <h3>Payment Info</h3>
@@ -48,8 +57,8 @@ export default function Sidebar({
                 <input
                   type="text"
                   name="Name"
-                  value={value}
-                  onChange={handleInput}
+                  value={nameInput}
+                  onChange={(e) => handleInput(e, "name")}
                   placeholder="Student Name"
                 />
               </div>
@@ -58,8 +67,8 @@ export default function Sidebar({
                 <input
                   type="text"
                   name="Email"
-                  value={value}
-                  onChange={handleInput}
+                  value={emailInput}
+                  onChange={(e) => handleInput(e, "email")}
                   placeholder="student@codepath.org"
                 />
               </div>

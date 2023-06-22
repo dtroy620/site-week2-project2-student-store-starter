@@ -1,35 +1,43 @@
 import * as React from "react";
 import "./ProductDetails.css";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductView from "../ProductView/ProductView";
 
 export default function ProductDetail({
-  products,
+  shoppingCart,
   handleAddItemToCart,
   handleRemoveItemToCart,
   showDescription,
   setShowDescription,
 }) {
+
   const { productId } = useParams();
-  const [filtered, setFiltered] = useState([]);
+  const [product, setProduct] = useState({});
+
+  const productUrl = `https://codepath-store-api.herokuapp.com/store/${productId}`
 
   useEffect(() => {
-    setFiltered(products?.filter((products) => products.id == productId));
+    axios.get(productUrl).then((res) => {
+      setProduct(res.data.product)
+    })
+
   }, []);
-  console.log(filtered[0]);
-  return (
-    <div className="product-detail">
-      {filtered?.map((element, id) => (
-        <ProductView
-          handleAddItemToCart={handleAddItemToCart}
-          handleRemoveItemToCart={handleRemoveItemToCart}
-          key={id}
-          product={filtered[0]}
-          showDescription={showDescription}
-          setShowDescription={setShowDescription}
-        />
-      ))}
-    </div>
-  );
+  if (!product) return (<span>Loading...</span>)
+  else {
+    return (
+      <div className="product-detail">
+          <ProductView
+            shoppingCart={shoppingCart}
+            handleAddItemToCart={handleAddItemToCart}
+            handleRemoveItemToCart={handleRemoveItemToCart}
+            product={product}
+            showDescription={showDescription}
+            setShowDescription={setShowDescription}
+          />
+      </div>
+    );
+
+  }
 }

@@ -5,6 +5,7 @@
     color: white;
     justify-content: center;
 }
+
 .headers {
     display: flex;
     flex-direction: column;
@@ -53,4 +54,33 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.receipt {
+    display: flex;
+    flex-direction: column;
+    background: #CFE1B9;
+    border-radius: 4px;
+    width: 90%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.receipt .subtotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.receipt .tax {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.receipt .total {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
