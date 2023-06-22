@@ -1,25 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "./ProductCard.css";
 
 export default function ProjectCard({
   product,
+  shoppingCart,
   productId,
   handleAddItemToCart,
   handleRemoveItemToCart,
   showDescription = false,
 }) {
-  
   const description = showDescription ? "show-description" : "hide-description";
-  const [quantity, setQuantity] = useState(0);
-  
-  function changeQuantity(e) {
-    if (e === "add") setQuantity(quantity + 1);
-    else if (e === "remove") {
-      if (quantity === 0) setQuantity(0);
-      else setQuantity(quantity - 1);
-    }
-  }
   return (
     <div className="product-card">
       <div className="media">
@@ -40,19 +30,29 @@ export default function ProjectCard({
         </div>
         <div className="actions">
           <div className="card-buttons">
-            <button className="add" onClick={() => {
-              changeQuantity("add") 
-              handleAddItemToCart(product.id, quantity)}}>
+            <button
+              className="add"
+              onClick={() => {
+                handleAddItemToCart(productId);
+              }}
+            >
               +
             </button>
-            <button className="remove" onClick={() => {
-              changeQuantity("remove") 
-              handleAddItemToCart(product.id, quantity)}}>
+            <button
+              className="remove"
+              onClick={() => {
+                handleRemoveItemToCart(productId);
+              }}
+            >
               -
             </button>
           </div>
           <span className="quantity-display">
-            <span className="quantity-box">{quantity}</span>
+            <span className="quantity-box">
+              {shoppingCart.map((item) => {
+                if (item.itemId === productId) return item.quantity;
+              })}
+            </span>
           </span>
         </div>
       </div>

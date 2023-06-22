@@ -10,6 +10,7 @@ import { useState } from "react"
 
 export default function Home({
   products,
+  shoppingCart,
   handleAddItemToCart,
   handleRemoveItemToCart,
   showDescription = false,
@@ -57,6 +58,7 @@ export default function Home({
       />
       <div className="home">
         <ProductGrid
+          shoppingCart={shoppingCart}
           products={filter ? filter : products}
           handleAddItemToCart={handleAddItemToCart}
           handleRemoveItemToCart={handleRemoveItemToCart}

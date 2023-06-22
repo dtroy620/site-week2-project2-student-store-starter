@@ -33,44 +33,72 @@ export default function App() {
 
   const [showDescription, setShowDescription] = useState(false);
 
-
-  function handleOnToggle() { //Required
+  //Required
+  function handleOnToggle() {
     setIsOpen(!isOpen);
   }
-
-  function handleAddItemToCart(id, quant) { //Required
-    setShoppingCart([...shoppingCart, { //implement if ID exists, increase quantity and not add new object
-      id:id,
-      quantity:quant
-    }])
+  //Required
+  function handleAddItemToCart(productId) {
+    let isAlreadyInCart = shoppingCart.some(
+      (product) => product.itemId === productId
+    );
+    if (isAlreadyInCart) {
+      let i = shoppingCart.findIndex((product) => product.itemId === productId);
+      let updatedCart = [...shoppingCart];
+      updatedCart[i] = {
+        itemId: updatedCart[i].itemId,
+        quantity: ++updatedCart[i].quantity,
+      };
+      setShoppingCart(updatedCart);
+    } else {
+      setShoppingCart([...shoppingCart, { itemId: productId, quantity: 1 }]);
+    }
   }
 
-  console.log(shoppingCart);
-
-  function handleRemoveItemToCart() { //Required
+  //Required FIX THIS FUNCTION
+  function handleRemoveItemToCart(productId) {
+    let isAlreadyInCart = shoppingCart.some(
+      (product) => product.itemId === productId
+    );
+    let i = shoppingCart.findIndex((product) => product.itemId === productId);
+    if (isAlreadyInCart) {
+      
+      let updatedCart = [...shoppingCart];
+      updatedCart[i] = {
+        itemId: updatedCart[i].itemId,
+        quantity: --updatedCart[i].quantity,
+      }
+      setShoppingCart(updatedCart);
+      if (updatedCart[i].quantity === 0)
+      {
+        updatedCart = shoppingCart.filter((item) => item.itemId !== productId )
+        setShoppingCart(updatedCart)
+      }
+    }
   }
+
 
   function handleSubmit(e) {
     e.preventDefault();
   }
-
-  
 
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Navbar setShowDescription={setShowDescription} />
-          <Sidebar 
-            handleOnToggle={handleOnToggle} 
+          <Sidebar
+            handleOnToggle={handleOnToggle}
             isOpen={isOpen}
             products={products}
-            shoppingCart={shoppingCart} />
+            shoppingCart={shoppingCart}
+          />
           <Routes>
             <Route
               path="/"
               element={
                 <Home
+                  shoppingCart={shoppingCart}
                   products={products}
                   handleAddItemToCart={handleAddItemToCart}
                   handleRemoveItemToCart={handleRemoveItemToCart}

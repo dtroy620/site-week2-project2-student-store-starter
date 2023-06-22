@@ -12,6 +12,12 @@
     background: #718355;
     border-right: solid 0.1px white;
 }
+
+.shopping-cart-header {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
 .sidebar.closed {
     width: 60px;
 }

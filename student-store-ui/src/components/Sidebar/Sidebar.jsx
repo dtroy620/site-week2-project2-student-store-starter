@@ -34,6 +34,7 @@ export default function Sidebar({
             </span>
           </div>
           <div className={showInfo}>
+            <h2 className="shopping-cart-header">Shopping Cart</h2>
             <ShoppingCart
               isOpen={isOpen}
               products={products}
