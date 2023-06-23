@@ -12,32 +12,29 @@ export default function ProductDetail({
   showDescription,
   setShowDescription,
 }) {
-
   const { productId } = useParams();
   const [product, setProduct] = useState({});
 
-  const productUrl = `http://localhost:3001/products/${productId}`
+  const productUrl = `http://localhost:3001/products/${productId}`;
 
   useEffect(() => {
     axios.get(productUrl).then((res) => {
-      setProduct(res.data.product)
-    })
-
+      setProduct(res.data.product);
+    });
   }, []);
-  if (!product) return (<span>Loading...</span>)
+  if (!product) return <span>Loading...</span>;
   else {
     return (
       <div className="product-detail">
-          <ProductView
-            shoppingCart={shoppingCart}
-            handleAddItemToCart={handleAddItemToCart}
-            handleRemoveItemToCart={handleRemoveItemToCart}
-            product={product}
-            showDescription={showDescription}
-            setShowDescription={setShowDescription}
-          />
+        <ProductView
+          shoppingCart={shoppingCart}
+          handleAddItemToCart={handleAddItemToCart}
+          handleRemoveItemToCart={handleRemoveItemToCart}
+          product={product}
+          showDescription={showDescription}
+          setShowDescription={setShowDescription}
+        />
       </div>
     );
-
   }
 }

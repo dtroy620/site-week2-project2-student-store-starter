@@ -5,7 +5,7 @@ export default function CheckoutForm({
   checkoutForm,
   hasCheckedOut,
   checkoutTotal,
-  personalInformation
+  personalInformation,
 }) {
   if (hasCheckedOut === true) {
     return (
@@ -13,7 +13,8 @@ export default function CheckoutForm({
         <h4>Receipt</h4>
         <div className="info">
           <p>
-            Showing Receipt Information for {personalInformation.name} available at {personalInformation.email}:
+            Showing Receipt Information for {personalInformation.name} available
+            at {personalInformation.email}:
           </p>
           <ul>
             {checkoutForm?.map((item) => (
@@ -53,21 +54,20 @@ export default function CheckoutForm({
       </div>
     );
   } else {
-    return <div className="check-out-card empty">
-        <p>Please ensure you fill out all information and ensure to add items to cart!!!</p>
+    return (
+      <div className="check-out-card empty">
+        <p>
+          Please ensure you fill out all information and ensure to add items to
+          cart!!!
+        </p>
         <div className="reqiured-information-list">
-            <ul>
-                <li>
-                    Shopping Cart
-                </li>
-                <li>
-                    Name
-                </li>
-                <li>
-                    Email
-                </li>
-            </ul>
+          <ul>
+            <li>Shopping Cart</li>
+            <li>Name</li>
+            <li>Email</li>
+          </ul>
         </div>
-    </div>;
+      </div>
+    );
   }
 }

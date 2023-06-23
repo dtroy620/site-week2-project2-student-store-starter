@@ -9,7 +9,6 @@ export default function ProductCard({
   handleRemoveItemToCart,
   showDescription = false,
 }) {
-
   const description = showDescription ? "show-description" : "hide-description";
   return (
     <div className="product-card">

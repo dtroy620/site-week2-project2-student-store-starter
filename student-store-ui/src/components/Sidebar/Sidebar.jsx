@@ -20,7 +20,7 @@ export default function Sidebar({
   const [checkoutForm, setCheckoutForm] = useState()
   const [personalInformation, setPersonalInformation] = useState()
   const [checkoutTotal, setCheckoutTotal] = useState()
-
+  
   let tax = 0.0875;
   let subtotal = 0;
   let total = 0;

@@ -1,7 +1,13 @@
 import "./ShoppingCart.css";
 
-export default function ShoppingCart({products, shoppingCart, tax, subtotal, total }) {
-
+export default function ShoppingCart({
+  products,
+  shoppingCart,
+  tax,
+  subtotal,
+  total,
+}) {
+  "";
   if (shoppingCart.length === 0) {
     return (
       <span className="empty-shopping-cart">
@@ -53,7 +59,7 @@ export default function ShoppingCart({products, shoppingCart, tax, subtotal, tot
         </div>
         <div className="receipt">
           <div className="subtotal">
-            <span>Total:</span>
+            <span>Subtotal:</span>
             <span>
               {subtotal.toLocaleString("us-EN", {
                 style: "currency",

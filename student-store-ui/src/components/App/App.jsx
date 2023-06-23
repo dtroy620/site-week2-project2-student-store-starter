@@ -39,6 +39,7 @@ export default function App() {
     let isAlreadyInCart = shoppingCart.some(
       (product) => product.itemId === productId
     );
+
     if (isAlreadyInCart) {
       let i = shoppingCart.findIndex((product) => product.itemId === productId);
       let updatedCart = [...shoppingCart];
@@ -72,9 +73,6 @@ export default function App() {
     }
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
 
   return (
     <div className="app">
@@ -97,7 +95,6 @@ export default function App() {
                   products={products}
                   handleAddItemToCart={handleAddItemToCart}
                   handleRemoveItemToCart={handleRemoveItemToCart}
-                  handleSubmit={handleSubmit}
                   showDescription={showDescription}
                 />
               }

@@ -20,6 +20,7 @@ class UserUtils {
 
 app.use(cors());
 app.use(express.json());
+
 app.get('/', (req, res) => {
     res.status(200)
     res.send(db)
@@ -36,5 +37,12 @@ app.get('/products/:id', (req, res) => {
     let product = db.products.filter(product => product.id === parseInt(id))
     product ? product = product[0] : res.send("No products found")
     res.send({"product": product})
+})
+
+app.get('/purchases/:email', (req, res) => {
+    const {email} = req.params
+    let purchase = db.purchases.filter(purchase => purchase.email === email)
+    purchase ? purchase = [] : res.send("No purchases")
+    res.send({"purchase": purchase})
 })
 module.exports = app;
