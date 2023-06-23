@@ -64,7 +64,7 @@ export default function ShoppingCart({products, shoppingCart, tax, subtotal, tot
           <div className="tax">
             <span>Tax:</span>
             <span>
-              {(tax * subtotal).toLocaleString("us-EN", {
+              {tax.toLocaleString("us-EN", {
                 style: "currency",
                 currency: "USD",
               })}

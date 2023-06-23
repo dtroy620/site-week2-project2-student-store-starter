@@ -11,7 +11,7 @@ import ProductDetails from "../ProductDetails/ProductDetails";
 import About from "../About/About";
 
 export default function App() {
-  const url = "https://codepath-store-api.herokuapp.com/store";
+  const url = "http://localhost:3001";
   useEffect(() => {
     axios
       .get("http://localhost:3001")
@@ -27,10 +27,7 @@ export default function App() {
   const [products, setProducts] = useState(); //Required
   const [isOpen, setIsOpen] = useState(false); //Required
   const [error, setError] = useState(); //Required
-  const [isFetching, setIsFetching] = useState(false); //Required
   const [shoppingCart, setShoppingCart] = useState([]); //Required
-  const [checkOutForm, setCheckOutForm] = useState(); //Required
-
   const [showDescription, setShowDescription] = useState(false);
 
   //Required
@@ -89,10 +86,11 @@ export default function App() {
             isOpen={isOpen}
             products={products}
             shoppingCart={shoppingCart}
+            setShoppingCart={setShoppingCart}
           />
           <Routes>
             <Route
-              path="/"
+              path=""
               element={
                 <Home
                   shoppingCart={shoppingCart}
@@ -105,7 +103,7 @@ export default function App() {
               }
             />
             <Route
-              path="products/:productId"
+              path="/products/:productId"
               element={
                 <ProductDetails
                   shoppingCart={shoppingCart}

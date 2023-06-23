@@ -16,7 +16,7 @@ export default function ProductDetail({
   const { productId } = useParams();
   const [product, setProduct] = useState({});
 
-  const productUrl = `https://codepath-store-api.herokuapp.com/store/${productId}`
+  const productUrl = `http://localhost:3001/products/${productId}`
 
   useEffect(() => {
     axios.get(productUrl).then((res) => {

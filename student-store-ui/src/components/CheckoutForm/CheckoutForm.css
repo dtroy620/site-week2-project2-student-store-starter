@@ -1,0 +1,19 @@
+.check-out-card .info {
+    padding: 10px;
+    
+}
+
+.check-out-card.empty {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.check-out-card p {
+    margin: 0;
+}
+.reqiured-information-list {
+    display: flex;
+    text-align: left;
+}

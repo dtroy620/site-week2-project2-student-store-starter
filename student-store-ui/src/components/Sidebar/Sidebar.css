@@ -17,6 +17,7 @@
     display: flex;
     justify-content: center;
     color: white;
+    margin: 30px 0px 15px 0px;
 }
 .sidebar.closed {
     width: 60px;
@@ -91,8 +92,6 @@
     width: 100%;
 }
 
-
-
 .payment-form {
     color: white;
     margin: 0px 0px 0px 20px;
@@ -100,6 +99,7 @@
 .payment-form h3 {
     display: flex;
     justify-content: center;
+    margin: 30px 0px 15px 0px;
 }
 .user-inputs {
     width: 90%;
@@ -125,4 +125,23 @@
     color: white;
     margin-left: 35px;
     font-size: 30px;
+}
+
+.check-out {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+}
+
+.check-out h4 {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.check-out h3 {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px 0px 0px;
 }

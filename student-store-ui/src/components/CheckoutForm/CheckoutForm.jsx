@@ -2,13 +2,10 @@ import "./CheckoutForm.css";
 
 export default function CheckoutForm({
   products,
-  shoppingCart,
+  checkoutForm,
   hasCheckedOut,
-  total,
-  subtotal,
-  tax,
-  name,
-  email,
+  checkoutTotal,
+  personalInformation
 }) {
   if (hasCheckedOut === true) {
     return (
@@ -16,41 +13,61 @@ export default function CheckoutForm({
         <h4>Receipt</h4>
         <div className="info">
           <p>
-            Showing Receipt Information for {name} available at {email}:
+            Showing Receipt Information for {personalInformation.name} available at {personalInformation.email}:
           </p>
           <ul>
-            {shoppingCart?.map((item) => (
+            {checkoutForm?.map((item) => (
               <li>
-                {
-                  products?.filter((product) => item.itemId === product.id)[0]
-                    .name
-                }
+                {item.quantity + " total "}
+                {products?.filter((product) => item.itemId === product.id)[0]
+                  .name + " "}
+                {"puchased at a cost of " +
+                  (
+                    products.filter((product) => item.itemId === product.id)[0]
+                      .price * item.quantity
+                  ).toLocaleString("us-EN", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
               </li>
             ))}
 
             <li>
-              {total.toLocaleString("us-EN", {
-                style: "currency",
-                currency: "USD",
-              })}
+              Before taxes, the subtotal was
+              {" " +
+                checkoutTotal.subtotal.toLocaleString("us-EN", {
+                  style: "currency",
+                  currency: "USD",
+                })}
             </li>
             <li>
-              {total.toLocaleString("us-EN", {
-                style: "currency",
-                currency: "USD",
-              })}
-            </li>
-            <li>
-              {total.toLocaleString("us-EN", {
-                style: "currency",
-                currency: "USD",
-              })}
+              After taxes and fees, the total is
+              {" " +
+                checkoutTotal.total.toLocaleString("us-EN", {
+                  style: "currency",
+                  currency: "USD",
+                })}
             </li>
           </ul>
         </div>
       </div>
     );
   } else {
-    return <div>FALSE</div>;
+    return <div className="check-out-card empty">
+        <p>Please ensure you fill out all information and ensure to add items to cart!!!</p>
+        <div className="reqiured-information-list">
+            <ul>
+                <li>
+                    Shopping Cart
+                </li>
+                <li>
+                    Name
+                </li>
+                <li>
+                    Email
+                </li>
+            </ul>
+        </div>
+    </div>;
   }
 }

@@ -6,7 +6,6 @@ const path = require('path')
 const db = require('./data/db.json')
 const cors = require('cors')
 
-
 class User {
     constructor({name, id}){
         this.name = name;
@@ -18,8 +17,9 @@ class UserUtils {
     static getAllUsers() {}
     static deleteAllUsers() {}
 }
-app.use(cors());
 
+app.use(cors());
+app.use(express.json());
 app.get('/', (req, res) => {
     res.status(200)
     res.send(db)
@@ -31,4 +31,10 @@ app.post('/', (req,res) => {
     res.send('succes')
 })
 
+app.get('/products/:id', (req, res) => {
+    const {id} = req.params
+    let product = db.products.filter(product => product.id === parseInt(id))
+    product ? product = product[0] : res.send("No products found")
+    res.send({"product": product})
+})
 module.exports = app;

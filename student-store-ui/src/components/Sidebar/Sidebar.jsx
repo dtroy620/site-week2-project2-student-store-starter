@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Sidebar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
@@ -9,6 +9,7 @@ export default function Sidebar({
   handleOnToggle,
   products,
   shoppingCart,
+  setShoppingCart,
 }) {
   const sideBarClassName = isOpen ? "sidebar open" : "sidebar closed";
   const showInfo = isOpen ? "info show" : "info close";
@@ -16,7 +17,9 @@ export default function Sidebar({
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [hasCheckedOut, setHasCheckedOut] = useState(false);
-
+  const [checkoutForm, setCheckoutForm] = useState()
+  const [personalInformation, setPersonalInformation] = useState()
+  const [checkoutTotal, setCheckoutTotal] = useState()
 
   let tax = 0.0875;
   let subtotal = 0;
@@ -28,8 +31,9 @@ export default function Sidebar({
         products.filter((product) => item.itemId === product.id)[0].price *
         item.quantity),
   );
-
+  tax = tax * subtotal;
   total = tax + subtotal;
+
 
   function handleInput(e, i) {
     if (i === "name") {
@@ -41,10 +45,17 @@ export default function Sidebar({
 
   function handleClick(e) {
     e.preventDefault();
+    setCheckoutForm(shoppingCart)
+    setPersonalInformation({name:nameInput, email:emailInput})
+    setCheckoutTotal({total:total, subtotal:subtotal, tax:tax})
+    console.log(checkoutForm)
     if (shoppingCart.length === 0 || nameInput === "" || emailInput === "") {
       setHasCheckedOut(false);
     } else {
+      setShoppingCart([])
       setHasCheckedOut(true);
+      setNameInput("")
+      setEmailInput("")
     }
   }
 
@@ -104,11 +115,10 @@ export default function Sidebar({
               <h3>Checkout Info</h3>
               <CheckoutForm
                 hasCheckedOut={hasCheckedOut}
-                shoppingCart={shoppingCart}
+                personalInformation={personalInformation}
+                checkoutForm={checkoutForm}
                 products={products}
-                tax={tax}
-                subtotal={subtotal}
-                total={total}
+                checkoutTotal={checkoutTotal}
                 name={nameInput}
                 email={emailInput}
               />
