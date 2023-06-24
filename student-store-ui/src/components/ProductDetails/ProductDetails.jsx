@@ -15,7 +15,7 @@ export default function ProductDetail({
   const { productId } = useParams();
   const [product, setProduct] = useState({});
 
-  const productUrl = `http://localhost:3001/products/${productId}`;
+  const productUrl = `http://localhost:3001/store/products/${productId}`;
 
   useEffect(() => {
     axios.get(productUrl).then((res) => {
